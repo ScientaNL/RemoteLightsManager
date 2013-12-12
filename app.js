@@ -1,3 +1,6 @@
+/* Toggle development or production */
+process.env.environment = "production";
+
 var Sequencer = require("./Sequencer"),
 	Sequence = require('./Sequence'),
 	SwitchAllLightsOffAction = require('./Action/SwitchAllLightsOff'),

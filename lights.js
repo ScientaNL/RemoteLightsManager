@@ -6,12 +6,28 @@ var lights = module.exports = {
 		'green': new Light('green')
 	};
 
-// Add switch commands 
-lights.red.setSwitchOnCommand("sleep .1");
-lights.red.setSwitchOffCommand("sleep .1");
+// Add switch commands
+if(process.env.environment === "production")
+{
+	var prefix = "sudo /home/pi/kaku 1 ";
+	
+	lights.red.setSwitchOnCommand(prefix + " 1 on");
+	lights.red.setSwitchOffCommand(prefix + " 1 off");
 
-lights.orange.setSwitchOnCommand("sleep .1");
-lights.orange.setSwitchOffCommand("sleep .1");
+	lights.orange.setSwitchOnCommand(prefix + " 2 on");
+	lights.orange.setSwitchOffCommand(prefix + "  2 off");
 
-lights.green.setSwitchOnCommand("sleep .1");
-lights.green.setSwitchOffCommand("sleep .1");
+	lights.green.setSwitchOnCommand(prefix + " 3 on");
+	lights.green.setSwitchOffCommand(prefix + " 3 off");
+}
+else
+{
+	lights.red.setSwitchOnCommand("sleep .1");
+	lights.red.setSwitchOffCommand("sleep .1");
+	
+	lights.orange.setSwitchOnCommand("sleep .1");
+	lights.orange.setSwitchOffCommand("sleep .1");
+	
+	lights.green.setSwitchOnCommand("sleep .1");
+	lights.green.setSwitchOffCommand("sleep .1");
+}
