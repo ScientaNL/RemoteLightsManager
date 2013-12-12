@@ -1,0 +1,232 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,300);
+@import "animation.css";
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+html {
+  font-size: 10px;
+}
+html,
+body,
+button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: #454545;
+}
+html,
+body {
+  overflow: hidden;
+  -webkit-text-size-adjust: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e6e6e6), color-stop(1, #fafafa));
+  background: -ms-linear-gradient(bottom, #e6e6e6, #fafafa);
+  background: -moz-linear-gradient(center bottom, #e6e6e6 0%, #fafafa 100%);
+  background: -o-linear-gradient(#fafafa, #e6e6e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#e6e6e6', GradientType=0);
+}
+body.offline:after {
+  content: '';
+  background: rgba(255, 255, 255, 0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+.inner {
+  max-width: 100%;
+  width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+body > * {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+header {
+  background: white;
+  height: 6rem;
+  line-height: 6rem;
+  border-bottom: 1px solid #ededed;
+}
+header h1 {
+  margin: 0;
+  padding: 0;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 2.1rem;
+  font-weight: inherit;
+}
+section > .inner {
+  margin-top: 2.5rem;
+}
+ul.trafficLights {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: .45rem solid black;
+  -webkit-border-radius: 1.5em;
+  -moz-border-radius: 1.5em;
+  border-radius: 1.5em;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #1c1c1c;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1c1c1c), color-stop(1, #363636));
+  background: -ms-linear-gradient(bottom, #1c1c1c, #363636);
+  background: -moz-linear-gradient(center bottom, #1c1c1c 0%, #363636 100%);
+  background: -o-linear-gradient(#363636, #1c1c1c);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#363636', endColorstr='#1c1c1c', GradientType=0);
+}
+ul.trafficLights .light {
+  width: 6rem;
+  height: 6rem;
+  border: .45rem solid black;
+  margin: 1.2rem;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+ul.trafficLights .light.red {
+  background: #9e000e;
+}
+ul.trafficLights .light.red.on {
+  background: #d10013;
+  background: -moz-radial-gradient(center, ellipse cover, #ff051c 0%, #d10013 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ff051c), color-stop(100%, #d10013));
+  background: -webkit-radial-gradient(center, ellipse cover, #ff051c 0%, #d10013 100%);
+  background: -o-radial-gradient(center, ellipse cover, #ff051c 0%, #d10013 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #ff051c 0%, #d10013 100%);
+  background: radial-gradient(ellipse at center, #ff051c 0%, #d10013 100%);
+  -webkit-box-shadow: 0 0 4rem #d10013;
+  -moz-box-shadow: 0 0 4rem #d10013;
+  box-shadow: 0 0 4rem #d10013;
+}
+ul.trafficLights .light.orange {
+  background: #eb4603;
+}
+ul.trafficLights .light.orange.on {
+  background: #fc6325;
+  background: -moz-radial-gradient(center, ellipse cover, #fd8757 0%, #fc6325 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #fd8757), color-stop(100%, #fc6325));
+  background: -webkit-radial-gradient(center, ellipse cover, #fd8757 0%, #fc6325 100%);
+  background: -o-radial-gradient(center, ellipse cover, #fd8757 0%, #fc6325 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #fd8757 0%, #fc6325 100%);
+  background: radial-gradient(ellipse at center, #fd8757 0%, #fc6325 100%);
+  -webkit-box-shadow: 0 0 4rem #fc6325;
+  -moz-box-shadow: 0 0 4rem #fc6325;
+  box-shadow: 0 0 4rem #fc6325;
+}
+ul.trafficLights .light.green {
+  background: #0d3f13;
+}
+ul.trafficLights .light.green.on {
+  background: #166920;
+  background: -moz-radial-gradient(center, ellipse cover, #1f932d 0%, #166920 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #1f932d), color-stop(100%, #166920));
+  background: -webkit-radial-gradient(center, ellipse cover, #1f932d 0%, #166920 100%);
+  background: -o-radial-gradient(center, ellipse cover, #1f932d 0%, #166920 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #1f932d 0%, #166920 100%);
+  background: radial-gradient(ellipse at center, #1f932d 0%, #166920 100%);
+  -webkit-box-shadow: 0 0 4rem #166920;
+  -moz-box-shadow: 0 0 4rem #166920;
+  box-shadow: 0 0 4rem #166920;
+}
+ul.sequences {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 12rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: white;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.3rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+ul.sequences li {
+  padding: .8rem 1.5rem;
+  cursor: pointer;
+  border-top: 1px solid #fafafa;
+}
+ul.sequences li:first-child {
+  border-top: 0;
+}
+ul.sequences li:hover {
+  background: #eff1f1;
+}
+button.schedulerToggle {
+  position: absolute;
+  bottom: -3rem;
+  right: 0;
+  height: 2rem;
+  color: white;
+  border: 1px solid #398439;
+  background-color: #47a447;
+  font-size: .8rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+button.schedulerToggle.on {
+  background-color: #d2322d;
+  border-color: #ac2925;
+}
+label {
+  position: absolute;
+  bottom: -3rem;
+  left: 0;
+  height: 2rem;
+  display: block;
+  line-height: 2.2rem;
+}
+label > span {
+  font-weight: bold;
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 7px;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}

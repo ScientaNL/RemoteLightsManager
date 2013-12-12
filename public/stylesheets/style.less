@@ -1,0 +1,253 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,300);
+@import "elements";
+@import "animation.css";
+
+html
+{
+	font-size: 10px;
+}
+
+html,body,button
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	color: #454545;
+}
+
+html,body {
+	background: #fafafa;
+	
+	overflow: hidden;
+	-webkit-text-size-adjust: none;
+	
+	
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	
+	.gradient(#fafafa, darken(#fafafa, 8%), #fafafa);
+}
+
+body.offline:after
+{
+	content: '';
+	background: rgba(255, 255, 255, .7);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	position: absolute;
+}
+
+.inner
+{
+	max-width: 100%;
+	width: 50rem;
+	margin-left: auto;
+	margin-right: auto;
+	
+	position: relative;
+}
+
+body > *
+{
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+header
+{
+	background: white;
+	
+	height: 6rem;
+	line-height: 6rem;
+	
+	border-bottom: 1px solid darken(#fafafa, 5%);
+	
+	h1
+	{
+		margin: 0;
+		padding: 0;
+		.box-sizing(border-box);
+		
+		font-size: 2.1rem;
+		font-weight: inherit;	
+	}
+}
+
+section > .inner
+{
+	margin-top: 2.5rem;
+}
+
+ul.trafficLights
+{
+	display: inline-block;
+	
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	
+	border: .45rem solid black;
+	.rounded(1.5em);
+	.box-sizing(border-box);
+	
+	.gradient(#1C1C1C, #1C1C1C, lighten(#1C1C1C, 10%));
+	
+	.light
+	{
+		width: 6rem;
+		height: 6rem;
+		
+		border: .45rem solid black;
+		margin: 1.2rem;
+		
+		.rounded(999px);
+		
+		cursor: pointer;
+		
+		.lightMixin(@name, @color)
+		{
+			&.@{name}
+			{
+				background: darken(@color, 10%);
+    
+	    		&.on
+	      		{
+					background: @color;
+					background: -moz-radial-gradient(center, ellipse cover,  lighten(@color, 10%) 0%, @color 100%);
+					background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,lighten(@color, 10%)), color-stop(100%,@color));
+					background: -webkit-radial-gradient(center, ellipse cover,  lighten(@color, 10%) 0%,@color 100%);
+					background: -o-radial-gradient(center, ellipse cover,  lighten(@color, 10%) 0%,@color 100%);
+					background: -ms-radial-gradient(center, ellipse cover,  lighten(@color, 10%) 0%,@color 100%);
+					background: radial-gradient(ellipse at center,  lighten(@color, 10%) 0%,@color 100%);
+			      
+			      
+			      .box-shadow(0 0 4rem @color);
+	    		}
+			}
+		}
+
+		.lightMixin(~"red", #D10013);
+		.lightMixin(~"orange", #FC6325);
+		.lightMixin(~"green", #166920);	
+	}
+}
+
+ul.sequences
+{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 12rem;
+	
+	overflow-y: scroll;
+	overflow-x: hidden;
+	
+	list-style: none;
+	
+	margin: 0;
+	padding: 0;
+	
+	background: white;
+	.rounded(.5rem);
+	
+	font-size: 1.3rem;	
+	
+	.drop-shadow(0,0,1rem, .1);
+	
+	li
+	{
+		padding: .8rem 1.5rem;
+		
+		cursor: pointer;
+		
+		border-top: 1px solid #fafafa;
+	
+		
+		&:first-child
+		{
+			border-top: 0;
+		}
+		
+		&:hover
+		{
+			background: #eff1f1; 
+		}
+	}
+}
+
+button.schedulerToggle
+{
+	position: absolute;
+	bottom: -3rem;
+	right: 0;
+	height: 2rem;
+	
+	color: white;
+	border: 1px solid #398439;
+	background-color: #47a447;
+	
+	font-size: .8rem;	
+	
+	.rounded(.3rem);	
+	.drop-shadow(0,0,1rem, .05);
+	
+	cursor: pointer;
+	
+	&.on
+	{
+		background-color: #d2322d;
+		border-color: #ac2925;	
+	}
+}
+
+label
+{
+	position: absolute;
+	bottom: -3rem;
+	left: 0;
+	height: 2rem;
+	
+	display: block;
+	line-height: 2.2rem;
+	
+	> span
+	{
+		font-weight: bold;
+	}
+}
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width : 480px) {
+	html
+	{
+		font-size: 7px;
+	}
+}
+
+@media only screen and (min-width: 481px) and (max-width : 768px) {
+	html
+	{
+		font-size: 12px;
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width : 1024px) {
+	html
+	{
+		font-size: 14px;
+	}
+}
+
+@media only screen and (min-width: 1025px) {
+	html
+	{
+		font-size: 16px;
+	}
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+
+
+	<title>Syslogic Traffic Light Sequencer&#8482;</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+	<header>
+		<h1 class="inner">
+			Syslogic Traffic Light Sequencer&#8482;
+		</h1>
+	</header>
+	<section>
+		<div class="inner">
+			<ul class="trafficLights" data-bind="foreach: lights">
+				<li class="light" data-bind="click: $root.application.toggleLight, css: $root.application.getLightClass($data)"></li>
+			</ul>
+			<ul class="sequences" data-bind="foreach: sequences">
+				<li data-bind="text:label, click: $root.application.startSequence"></li>
+			</ul>
+			<label>Actief programma: <span data-bind="text: runningSequenceLabel"></span></label>
+			<button class="schedulerToggle" data-bind="click: $root.application.toggleAcceptEventedSequences, css: {'on': acceptEventedSequences() !== true}, text: acceptEventedSequences() ? 'Schakelen bij gebeurtenissen aan' : 'Schakelen bij gebeurtenissen uit'"></button>
+		</div>
+	</section>
+
+	<script src="/javascripts/jquery-2.0.3.min.js"></script>
+	<script src="/javascripts/knockout-3.0.0.js"></script>
+	<script src="/javascripts/knockout.mapping-latest.js"></script>
+	<script src="/javascripts/Application.js"></script>
+	<script type="text/javascript">
+		new Application(<%- JSON.stringify(lights) %>, <%- JSON.stringify(sequences) %>);
+	</script>
+</body>
+</html>
