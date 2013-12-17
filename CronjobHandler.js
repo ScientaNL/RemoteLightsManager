@@ -14,7 +14,7 @@ CronjobHandler.prototype.addCronjob = function(cron, sequenceId)
 				console.log("Start sequence door cronjob");
 				this.sequencer.startSequence(sequenceId);
 			}
-		}).bind(this));
+		}).bind(this), null, false, "Europe/Amsterdam");
 	
 	this.jobs.push(job);
 };

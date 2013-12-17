@@ -9,16 +9,16 @@ var lights = module.exports = {
 // Add switch commands
 if(process.env.environment === "production")
 {
-	var prefix = "sudo /home/pi/kaku 1 ";
+	var prefix = "sudo /home/pi/kaku B ";
 	
-	lights.red.setSwitchOnCommand(prefix + " 1 on");
-	lights.red.setSwitchOffCommand(prefix + " 1 off");
+	lights.red.setSwitchOnCommand(prefix + " 4 on");
+	lights.red.setSwitchOffCommand(prefix + " 4 off");
 
-	lights.orange.setSwitchOnCommand(prefix + " 2 on");
-	lights.orange.setSwitchOffCommand(prefix + "  2 off");
+	lights.orange.setSwitchOnCommand(prefix + " 5 on");
+	lights.orange.setSwitchOffCommand(prefix + "  5 off");
 
-	lights.green.setSwitchOnCommand(prefix + " 3 on");
-	lights.green.setSwitchOffCommand(prefix + " 3 off");
+	lights.green.setSwitchOnCommand(prefix + " 6 on");
+	lights.green.setSwitchOffCommand(prefix + " 6 off");
 }
 else
 {

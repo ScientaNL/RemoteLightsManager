@@ -41,7 +41,7 @@ Application.prototype.getLightClass = function(light)
 
 Application.prototype.updateStatus = function()
 {
-	jQuery.getJSON('/status', this.onGetStatusCompleted.bind(this))
+	jQuery.getJSON('/status' + "?" + Math.random(), this.onGetStatusCompleted.bind(this))
 		.fail(this.onGetStatusFailed.bind(this));
 };
 
@@ -91,15 +91,16 @@ Application.prototype.startSequence = function(sequence, event)
 		});
 
 	
-	jQuery.getJSON('/startSequence/' + ko.unwrap(sequence.sequenceId) );
+	jQuery.getJSON('/startSequence/' + ko.unwrap(sequence.sequenceId) + "?" + Math.random() );
 };
 
 Application.prototype.toggleLight = function(light)
 {
-	jQuery.getJSON('/toggleLight/' + ko.unwrap(light.lightId) );
+//console.log('/toggleLight/' + ko.unwrap(light.lightId) );
+	jQuery.getJSON('/toggleLight/' + ko.unwrap(light.lightId) + "?" + Math.random() );
 };
 
 Application.prototype.toggleAcceptEventedSequences = function()
 {
-	jQuery.getJSON('/toggleEventedSequences');
+	jQuery.getJSON('/toggleEventedSequences' + "?" + Math.random());
 };

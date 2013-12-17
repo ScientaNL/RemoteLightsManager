@@ -83,6 +83,19 @@ module.exports = [
 		.addAction(new Actions.Wait(600))
 		.addAction(new Actions.Switch('red', false)),
 		
+	new Sequence('Nederlands-verkeerslicht', "Nederlands verkeerslicht")
+		.addAction(new Actions.SwitchAllLightsOff())
+		.addAction(new Actions.Switch('green', true))
+		.addAction(new Actions.Wait(1000*30))
+		.addAction(new Actions.Switch('green', false))
+		.addAction(new Actions.Switch('orange', true))
+		.addAction(new Actions.Wait(1000*4))
+		.addAction(new Actions.Switch('orange', false))
+		.addAction(new Actions.Switch('red', true))
+		.addAction(new Actions.Wait(1000*60))
+		.addAction(new Actions.Switch('red', false))
+		.addAction(new Actions.Goto(1)),		
+		
 	new Sequence('disco', "Disco :-)")
 		.addAction(new Actions.SwitchAllLightsOff())
 		.addAction(new Actions.Switch('green', true))
