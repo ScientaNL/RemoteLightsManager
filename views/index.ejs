@@ -26,9 +26,15 @@
 			<label>Actief programma: <span data-bind="text: runningSequenceLabel"></span></label>
 			<button class="schedulerToggle" data-bind="click: $root.application.toggleAcceptEventedSequences, css: {'on': acceptEventedSequences() !== true}, text: acceptEventedSequences() ? 'Schakelen bij gebeurtenissen aan' : 'Schakelen bij gebeurtenissen uit'"></button>
 		</div>
+		<input type="checkbox" />
+		<ul class="cronjobs" data-bind="foreach: cronjobs">
+				<li data-bind="text: nextTick"></li>
+			</ul>
 	</section>
 
 	<script src="/javascripts/jquery-2.0.3.min.js"></script>
+	<script src="/javascripts/moment.min.js"></script>
+	<script src="/javascripts/nl.js"></script>
 	<script src="/javascripts/knockout-3.0.0.js"></script>
 	<script src="/javascripts/knockout.mapping-latest.js"></script>
 	<script src="/javascripts/Application.js"></script>

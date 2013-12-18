@@ -43,12 +43,13 @@ if ('development' == app.get('env')) {
 }
 
 // Create controller and add routes
-var controller = new LightsController(sequencer);
+var controller = new LightsController(sequencer, cronjobHandler);
 app.get('/', controller.index.bind(controller));
 app.get('/status', controller.status.bind(controller));
 app.get('/startSequence/:sequenceId', controller.startSequence.bind(controller));
 app.get('/toggleLight/:lightId', controller.toggleLight.bind(controller));
 app.get('/toggleEventedSequences', controller.toggleEventedSequences.bind(controller));
+app.get('/getNextCronTicks', controller.getNextCronTicks.bind(controller));
 
 // Switch off all lights and create web server and start the cronjobs
 sequencer.startSequence(new Sequence('switchAllOff').addAction(new SwitchAllLightsOffAction()), function() {

@@ -1,6 +1,7 @@
-var LightsController = function(sequencer)
+var LightsController = function(sequencer, cronjobHandler)
 {
 	this.sequencer = sequencer;
+	this.cronjobHandler = cronjobHandler;
 };
 
 LightsController.prototype.index = function(req, res)
@@ -51,6 +52,11 @@ LightsController.prototype.toggleEventedSequences = function(req, res)
 	this.sequencer.setAcceptEventedSequences((this.sequencer.acceptsEventedSequences() === true) ? false : true);
 	
 	res.json( this.sequencer.acceptsEventedSequences() );
+};
+
+LightsController.prototype.getNextCronTicks = function(req, res)
+{
+	res.json( this.cronjobHandler.getNextTicks() );
 };
 
 module.exports = LightsController;
