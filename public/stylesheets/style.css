@@ -102,7 +102,7 @@ ul.trafficLights .light {
   cursor: pointer;
 }
 ul.trafficLights .light.red {
-  background: #9e000e;
+  background: #84000c;
 }
 ul.trafficLights .light.red.on {
   background: #d10013;
@@ -117,7 +117,7 @@ ul.trafficLights .light.red.on {
   box-shadow: 0 0 4rem #d10013;
 }
 ul.trafficLights .light.orange {
-  background: #eb4603;
+  background: #d23e03;
 }
 ul.trafficLights .light.orange.on {
   background: #fc6325;
@@ -132,7 +132,7 @@ ul.trafficLights .light.orange.on {
   box-shadow: 0 0 4rem #fc6325;
 }
 ul.trafficLights .light.green {
-  background: #0d3f13;
+  background: #092a0d;
 }
 ul.trafficLights .light.green.on {
   background: #166920;
