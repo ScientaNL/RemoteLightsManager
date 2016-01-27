@@ -9,7 +9,8 @@ var Application = function(lights, sequences)
 			acceptEventedSequences: ko.observable(true),
 			
 			lights: [],
-			sequences: []
+			sequences: [],
+			cronjobs: ko.observableArray()
 		};
 	
 	//Transform the lights to an array
@@ -29,6 +30,7 @@ var Application = function(lights, sequences)
 	ko.applyBindings(this.bindings);
 	
 	this.updateStatus();
+	this.updateCronjobs();
 };
 
 Application.prototype.getLightClass = function(light)
@@ -80,6 +82,18 @@ Application.prototype.onGetStatusFailed = function()
 {
 	jQuery(document.body).addClass('offline');
 	setTimeout(this.updateStatus.bind(this), 5000);
+};
+
+Application.prototype.updateCronjobs = function()
+{
+	jQuery.getJSON('/getNextCronTicks', this.onGetNextCronjobsCompleted.bind(this))
+//		.fail(this.onGetStatusFailed.bind(this));
+};
+
+Application.prototype.onGetNextCronjobsCompleted = function(result)
+{
+	this.bindings.cronjobs(result);
+	console.log(result);
 };
 
 Application.prototype.startSequence = function(sequence, event)
