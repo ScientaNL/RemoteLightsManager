@@ -22,7 +22,9 @@ cronjobHandler.addCronjobs(require('./cronjobs'));
 /*
  * Web app
  */
-var app = express();
+var app = express(),
+	server = http.createServer(app),
+	io = require('socket.io').listen(server);
 
 // all environments
 app.set('port', process.env.PORT || 80);
@@ -51,10 +53,35 @@ app.get('/toggleLight/:lightId', controller.toggleLight.bind(controller));
 app.get('/toggleEventedSequences', controller.toggleEventedSequences.bind(controller));
 app.get('/getNextCronTicks', controller.getNextCronTicks.bind(controller));
 
+io.sockets.on('connection', function (socket) {
+
+	var lights = sequencer.getLights(),
+		i;
+	
+	for(i in lights)
+	{
+		socket.emit('light', {lightId: lights[i].lightId, on: lights[i].on } );
+	}
+	
+	socket.emit('activeSequence', sequencer.getRunningSequence() );
+	  
+	socket.on('startSequence', function (data) {
+		console.log(data);
+	});
+	  
+	socket.on('toggleLight', function (lightId) {
+		sequencer.toggleLight ( lightId );
+		
+		var light = sequencer.getLight(lightId);
+		socket.emit('light', {lightId: light.lightId, on: light.on } );
+	});
+});
+
+
 // Switch off all lights and create web server and start the cronjobs
 sequencer.startSequence(new Sequence('switchAllOff').addAction(new SwitchAllLightsOffAction()), function() {
 
-	http.createServer(app).listen(app.get('port'), function(){
+	server.listen(app.get('port'), function(){
 		  console.log('Express server listening on port ' + app.get('port'));
 		});
 	

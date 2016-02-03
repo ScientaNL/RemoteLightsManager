@@ -37,19 +37,20 @@ CronjobHandler.prototype.start = function() {
 
 CronjobHandler.prototype.getNextTicks = function() {
 	
-	var nextTicks = [];
+	var nextTicks = [], now = new Date();
 	
 	for(var i=0,u=this.jobs.length;i<u;i++)
 	{
-		nextTicks.push({nextTick: this.jobs[i].job.cronTime.sendAt(), sequenceId: this.jobs[i].sequenceId});
+		var nextTick = this.jobs[i].job.cronTime.sendAt();
+		nextTicks.push({nextTickTime: nextTick, nextTickTimestampOffset: nextTick.getTime() - now.getTime(), sequenceId: this.jobs[i].sequenceId});
 	}
 	
 	nextTicks.sort(function(a,b) {
-			if(a.nextTick.getTime() < b.nextTick.getTime())
+			if(a.nextTickTime.getTime() < b.nextTickTime.getTime())
 			{
 				return -1;
 			}
-			else if(a.nextTick.getTime() > b.nextTick.getTime())
+			else if(a.nextTickTime.getTime() > b.nextTickTime.getTime())
 			{
 				return 1;
 			}

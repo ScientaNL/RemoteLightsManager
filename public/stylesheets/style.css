@@ -18,19 +18,10 @@ button {
 }
 html,
 body {
-  overflow: hidden;
+  background: #fafafa;
   -webkit-text-size-adjust: none;
   margin: 0;
   padding: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #fafafa;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e6e6e6), color-stop(1, #fafafa));
-  background: -ms-linear-gradient(bottom, #e6e6e6, #fafafa);
-  background: -moz-linear-gradient(center bottom, #e6e6e6 0%, #fafafa 100%);
-  background: -o-linear-gradient(#fafafa, #e6e6e6);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#e6e6e6', GradientType=0);
 }
 body.offline:after {
   content: '';
@@ -102,7 +93,7 @@ ul.trafficLights .light {
   cursor: pointer;
 }
 ul.trafficLights .light.red {
-  background: #84000c;
+  background: #7a000b;
 }
 ul.trafficLights .light.red.on {
   background: #d10013;
@@ -117,7 +108,7 @@ ul.trafficLights .light.red.on {
   box-shadow: 0 0 4rem #d10013;
 }
 ul.trafficLights .light.orange {
-  background: #d23e03;
+  background: #c83b03;
 }
 ul.trafficLights .light.orange.on {
   background: #fc6325;
@@ -132,7 +123,7 @@ ul.trafficLights .light.orange.on {
   box-shadow: 0 0 4rem #fc6325;
 }
 ul.trafficLights .light.green {
-  background: #092a0d;
+  background: #07210a;
 }
 ul.trafficLights .light.green.on {
   background: #166920;
@@ -179,8 +170,8 @@ ul.sequences li:hover {
 }
 button.schedulerToggle {
   position: absolute;
-  bottom: -3rem;
-  right: 0;
+  bottom: 1rem;
+  right: 1rem;
   height: 2rem;
   color: white;
   border: 1px solid #398439;
@@ -198,7 +189,7 @@ button.schedulerToggle.on {
   background-color: #d2322d;
   border-color: #ac2925;
 }
-label {
+.inner > label {
   position: absolute;
   bottom: -3rem;
   left: 0;
@@ -206,8 +197,111 @@ label {
   display: block;
   line-height: 2.2rem;
 }
-label > span {
+.inner > label > span {
   font-weight: bold;
+}
+ul.cronjobs {
+  position: absolute;
+  top: 0;
+  bottom: 4rem;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #fafafa;
+}
+ul.cronjobs li {
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+}
+ul.cronjobs li.heading {
+  font-weight: bold;
+}
+ul.cronjobs li > div {
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul.cronjobs li > div:first-child {
+  width: 15rem;
+  text-align: right;
+}
+ul.cronjobs.disabled li {
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+  filter: alpha(opacity=50);
+}
+.toggleContainer {
+  position: relative;
+  margin-top: 1rem;
+}
+.toggleContainer > input[type=checkbox] {
+  display: none;
+}
+.toggleContainer > input[type=checkbox] + label {
+  position: absolute;
+  right: 0;
+  height: 1rem;
+  color: white;
+  background-color: #3276b1;
+  border-color: #285e8e;
+  padding: .5rem .7rem;
+  padding-right: 1.7rem;
+  font-size: .8rem;
+  line-height: .8rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+.toggleContainer > input[type=checkbox] + label:after {
+  position: absolute;
+  content: '';
+  top: .75rem;
+  right: .7rem;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: .40rem .25rem 0 .25rem;
+  border-color: #ffffff transparent transparent transparent;
+}
+.toggleContainer > input[type=checkbox] ~ div {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow-y: auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: white;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+.toggleContainer > input[type=checkbox]:checked + label:after {
+  border-width: 0 .25rem .40rem .25rem;
+  border-color: transparent transparent #ffffff transparent;
+}
+.toggleContainer > input[type=checkbox]:checked ~ div {
+  height: 20rem;
 }
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (max-width: 480px) {
