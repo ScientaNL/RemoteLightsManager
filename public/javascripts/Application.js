@@ -28,12 +28,9 @@ var Application = function(lights, sequences)
 	}
 		
 	ko.applyBindings(this.bindings);
-	
-	this.socket = io.connect('http://localhost');
-	this.socket.on('light', this.updateLight.bind(this));
-	
-	//this.updateStatus();
-	//this.updateCronjobs();	
+
+	this.updateStatus();
+	this.updateCronjobs();
 	
 	this.toggleLight = this.toggleLight.bind(this)
 };
@@ -41,7 +38,7 @@ var Application = function(lights, sequences)
 Application.prototype.getLightClass = function(light)
 {
 	var classes = [light.lightId()];
-	(light.on() === true) && classes.push('on')
+	(light.on() === true) && classes.push('on');
 	
 	return classes.join(" ");
 };
@@ -132,9 +129,7 @@ Application.prototype.startSequence = function(sequence, event)
 
 Application.prototype.toggleLight = function(light)
 {
-//console.log('/toggleLight/' + ko.unwrap(light.lightId) );
-	//jQuery.getJSON('/toggleLight/' + ko.unwrap(light.lightId) + "?" + Math.random() );
-	this.socket.emit('toggleLight', ko.unwrap(light.lightId) );
+	jQuery.getJSON('/toggleLight/' + ko.unwrap(light.lightId) + "?" + Math.random() );
 };
 
 Application.prototype.toggleAcceptEventedSequences = function()

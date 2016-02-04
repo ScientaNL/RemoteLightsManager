@@ -21,3 +21,4 @@ node_modules
 *.prefs
 
 .settings/org.eclipse.wst.common.project.facet.core.xml
+/.idea

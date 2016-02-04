@@ -7,10 +7,10 @@
 	},
 	"dependencies": {
 		"express": "3.*",
-		"socket.io": "*",
 		"ejs": "*",
 		"less-middleware": "*",
-		"cron": "*",
-		"time": "*"
+		"cron": "1.1.*",
+		"time": "*",
+	  	"moment": "*"
 	}
 }

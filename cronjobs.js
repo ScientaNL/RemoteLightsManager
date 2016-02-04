@@ -9,5 +9,5 @@ module.exports = [
 		['00 00 17 * * 1-5', 'redgreenorange-mix'], //Doe maar wat leuks :-)
 		['30 00 17 * * 1-5', 'lightgreen'], //En na 30 seconden de groen lamp aan
 		
-		['00 27 17 * * *', 'alloff'] //17:15 alles uit
+		['00 15 17 * * *', 'alloff'] //17:15 alles uit
 	];

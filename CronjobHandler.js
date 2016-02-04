@@ -1,4 +1,5 @@
-var Cronjob = require('cron').CronJob;
+var Cronjob = require('cron').CronJob,
+	moment = require('moment');
 
 var CronjobHandler = function(sequencer)
 {
@@ -37,20 +38,20 @@ CronjobHandler.prototype.start = function() {
 
 CronjobHandler.prototype.getNextTicks = function() {
 	
-	var nextTicks = [], now = new Date();
+	var nextTicks = [], now = moment();
 	
 	for(var i=0,u=this.jobs.length;i<u;i++)
 	{
 		var nextTick = this.jobs[i].job.cronTime.sendAt();
-		nextTicks.push({nextTickTime: nextTick, nextTickTimestampOffset: nextTick.getTime() - now.getTime(), sequenceId: this.jobs[i].sequenceId});
+		nextTicks.push({nextTickTime: nextTick, nextTickTimestampOffset: nextTick.format('x') - now.format('x'), sequenceId: this.jobs[i].sequenceId});
 	}
-	
+
 	nextTicks.sort(function(a,b) {
-			if(a.nextTickTime.getTime() < b.nextTickTime.getTime())
+			if(a.nextTickTime.format('x') < b.nextTickTime.format('x'))
 			{
 				return -1;
 			}
-			else if(a.nextTickTime.getTime() > b.nextTickTime.getTime())
+			else if(a.nextTickTime.format('x') > b.nextTickTime.format('x'))
 			{
 				return 1;
 			}

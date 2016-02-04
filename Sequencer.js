@@ -32,7 +32,7 @@ Sequencer.prototype.addSequences = function(sequences)
 	{
 		this.addSequence(sequences[i]);
 	}
-}
+};
 
 Sequencer.prototype.getLight = function(lightId)
 {
@@ -68,7 +68,7 @@ Sequencer.prototype.startSequence = function(sequence, callback)
 	
 	(this.activeSequence instanceof RunningSequence === true) && this.activeSequence.cancel();
 	
-	console.log("Start seqence");
+	console.log("Start sequence");
 	
 	this.activeSequence = new RunningSequence(sequence, this);
 	this.activeSequence.on('complete', this.unsetActiveSequence.bind(this));

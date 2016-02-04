@@ -29,7 +29,8 @@ RunningSequence.prototype.run = function()
 		action = actions[this.index];
 	
 	this.state = STATE_RUNNING;
-	action.perform(this, this.runnedCallback.bind(this));	
+	action.perform(this, this.runnedCallback.bind(this));
+	this.emit('action');
 };
 
 RunningSequence.prototype.runnedCallback = function()
@@ -42,8 +43,8 @@ RunningSequence.prototype.runnedCallback = function()
 	}
 	else if(actions.length-1 > this.index)
 	{
-		this.index++;		
-		this.run();		
+		this.index++;
+		this.run();
 	}
 	else
 	{
