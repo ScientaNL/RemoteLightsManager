@@ -1,6 +1,6 @@
 var Application = function(lights, sequences)
 {
-	this.lights = {};
+	this.lights = {};	
 	
 	this.bindings = {
 			application: this,
@@ -28,15 +28,17 @@ var Application = function(lights, sequences)
 	}
 		
 	ko.applyBindings(this.bindings);
-	
+
 	this.updateStatus();
 	this.updateCronjobs();
+	
+	this.toggleLight = this.toggleLight.bind(this)
 };
 
 Application.prototype.getLightClass = function(light)
 {
 	var classes = [light.lightId()];
-	(light.on() === true) && classes.push('on')
+	(light.on() === true) && classes.push('on');
 	
 	return classes.join(" ");
 };
@@ -45,6 +47,16 @@ Application.prototype.updateStatus = function()
 {
 	jQuery.getJSON('/status' + "?" + Math.random(), this.onGetStatusCompleted.bind(this))
 		.fail(this.onGetStatusFailed.bind(this));
+};
+
+Application.prototype.updateLight = function(light)
+{
+	if(this.lights[light.lightId] === undefined)
+	{
+		throw "unknown light retrieved from the server";
+	}
+	
+	this.lights[light.lightId].on(light.on);
 };
 
 Application.prototype.onGetStatusCompleted = function(result)
@@ -86,14 +98,21 @@ Application.prototype.onGetStatusFailed = function()
 
 Application.prototype.updateCronjobs = function()
 {
-	jQuery.getJSON('/getNextCronTicks', this.onGetNextCronjobsCompleted.bind(this))
+	jQuery.getJSON('/getNextCronTicks?' + Math.random(), this.onGetNextCronjobsCompleted.bind(this))
 //		.fail(this.onGetStatusFailed.bind(this));
 };
 
 Application.prototype.onGetNextCronjobsCompleted = function(result)
 {
 	this.bindings.cronjobs(result);
-	console.log(result);
+	
+	if(result.length > 0)
+	{
+		var date = new Date(result[0].nextTick),
+			timeout = date.getTime() - new Date().getTime();
+		
+		setTimeout(this.updateCronjobs.bind(this), timeout);
+	}
 };
 
 Application.prototype.startSequence = function(sequence, event)
@@ -110,7 +129,6 @@ Application.prototype.startSequence = function(sequence, event)
 
 Application.prototype.toggleLight = function(light)
 {
-//console.log('/toggleLight/' + ko.unwrap(light.lightId) );
 	jQuery.getJSON('/toggleLight/' + ko.unwrap(light.lightId) + "?" + Math.random() );
 };
 

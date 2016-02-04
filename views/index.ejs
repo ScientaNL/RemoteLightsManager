@@ -23,13 +23,23 @@
 			<ul class="sequences" data-bind="foreach: sequences">
 				<li data-bind="text:label, click: $root.application.startSequence"></li>
 			</ul>
+			
 			<label>Actief programma: <span data-bind="text: runningSequenceLabel"></span></label>
-			<button class="schedulerToggle" data-bind="click: $root.application.toggleAcceptEventedSequences, css: {'on': acceptEventedSequences() !== true}, text: acceptEventedSequences() ? 'Schakelen bij gebeurtenissen aan' : 'Schakelen bij gebeurtenissen uit'"></button>
+
+			<div class="toggleContainer">
+				<input class="toggle" type="checkbox" id="toggleCronjobs" />
+				<label for="toggleCronjobs">Programma</label>
+				<div>
+					<ul class="cronjobs" data-bind="css: {'disabled': acceptEventedSequences() !== true}">
+						<li class="heading"><div>Tijd</div><div>Sequentie</div></li>
+						<!-- ko foreach: cronjobs -->
+						<li><div data-bind="timeleft: nextTickTimestampOffset"></div><div data-bind="text: sequenceId"></div></li>
+						<!-- /ko -->
+					</ul>
+					<button class="schedulerToggle" data-bind="click: $root.application.toggleAcceptEventedSequences, css: {'on': acceptEventedSequences() !== true}, text: acceptEventedSequences() ? 'Schakelen bij gebeurtenissen staat aan' : 'Schakelen bij gebeurtenissen staat uit'"></button>					
+				</div>
+			</div>			
 		</div>
-		<input type="checkbox" />
-		<ul class="cronjobs" data-bind="foreach: cronjobs">
-				<li data-bind="text: nextTick"></li>
-			</ul>
 	</section>
 
 	<script src="/javascripts/jquery-2.0.3.min.js"></script>
@@ -37,6 +47,7 @@
 	<script src="/javascripts/nl.js"></script>
 	<script src="/javascripts/knockout-3.0.0.js"></script>
 	<script src="/javascripts/knockout.mapping-latest.js"></script>
+	<script src="/javascripts/timeleft.js"></script>
 	<script src="/javascripts/Application.js"></script>
 	<script type="text/javascript">
 		new Application(<%- JSON.stringify(lights) %>, <%- JSON.stringify(sequences) %>);

@@ -44,7 +44,9 @@
         relativeTime : {
             future : "over %s",
             past : "%s geleden",
-            s : "een paar seconden",
+            s : function(a) {
+            	return (a >= 5) ? a + " seconden" : "een paar seconden";
+            },
             m : "één minuut",
             mm : "%d minuten",
             h : "één uur",

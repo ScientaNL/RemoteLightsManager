@@ -1,5 +1,5 @@
 /* Toggle development or production */
-process.env.environment = "production";
+process.env.environment = "development";
 
 var Sequencer = require("./Sequencer"),
 	Sequence = require('./Sequence'),
@@ -22,7 +22,8 @@ cronjobHandler.addCronjobs(require('./cronjobs'));
 /*
  * Web app
  */
-var app = express();
+var app = express(),
+	server = http.createServer(app);
 
 // all environments
 app.set('port', process.env.PORT || 80);
@@ -32,9 +33,9 @@ app.use(express.favicon());
 //app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.methodOverride());
+//app.use(express.methodOverride());
 app.use(app.router);
-app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
+app.use(require('less-middleware')( path.join(__dirname, 'public') ));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
@@ -54,7 +55,7 @@ app.get('/getNextCronTicks', controller.getNextCronTicks.bind(controller));
 // Switch off all lights and create web server and start the cronjobs
 sequencer.startSequence(new Sequence('switchAllOff').addAction(new SwitchAllLightsOffAction()), function() {
 
-	http.createServer(app).listen(app.get('port'), function(){
+	server.listen(app.get('port'), function(){
 		  console.log('Express server listening on port ' + app.get('port'));
 		});
 	
